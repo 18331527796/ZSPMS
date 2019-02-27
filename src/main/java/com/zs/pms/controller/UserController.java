@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.zs.pms.po.TUser;
 import com.zs.pms.service.DepService;
 import com.zs.pms.service.UserService;
 import com.zs.pms.vo.QueryUser;
@@ -31,8 +32,8 @@ public class UserController {
 	}
 	
 	@RequestMapping("/user/initdep.do")
-	public String toInsert(ModelMap model,) {
-		model.addAttribute("",ds.queryByDid() )
+	public String toInsert(ModelMap model,TUser user) {
+		model.addAttribute("DEPS",ds.queryByDid(user.getId()) );
 		return "user/adduser";
 	}
 }

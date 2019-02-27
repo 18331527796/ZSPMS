@@ -18,7 +18,7 @@ public class DepServiceImpl implements DepService{
 
 	@Override
 	public List<TDep> queryByDid(int id) {
-		dao.queryByPid(id)
+		dao.queryByPid(id);
 		return null;
 	}
 

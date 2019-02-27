@@ -47,7 +47,7 @@
 	<!-- 分页 -->
 	<sql id="page">
 		<where>
-		b.rn&gt;#{start} and b.rn&lt;#{end}
+		b.rn &gt; = #{start} and b.rn &lt; = #{end}
 		</where>
 	</sql>
 	

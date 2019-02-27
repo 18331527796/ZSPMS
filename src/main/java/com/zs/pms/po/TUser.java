@@ -48,7 +48,7 @@ public class TUser implements Serializable{
 	
 	public String getBirthdayTxt() {
 		
-		return DateUtil.getDateToStr(this.birthday, "yyyy-mm-dd");
+		return DateUtil.getDateToStr(this.birthday, "yyyy-MM-dd");
 	}
 	public String getIsenabledTxt() {
 		if (this.isenabled==1) {
