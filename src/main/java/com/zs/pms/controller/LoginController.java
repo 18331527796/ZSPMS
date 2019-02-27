@@ -55,7 +55,7 @@ public class LoginController {
 		}
 		session.setAttribute("TIME", DateUtil.getStrDate());
 		session.setAttribute("USER", users.get(0));
-		return "index";
+		return "main";
 	}
 
 	@RequestMapping("/top.do")
@@ -64,12 +64,12 @@ public class LoginController {
 		return "top";
 	}
 
-	@RequestMapping("/main.do")
+	@RequestMapping("/right.do")
 	public String main() {
-		return "main";
+		return "right";
 	}
 
-	@RequestMapping("/menu.do")
+	@RequestMapping("/left.do")
 	public String menu(ModelMap model,HttpSession session) {
 		
 		TUser user=(TUser) session.getAttribute("USER");
@@ -78,7 +78,7 @@ public class LoginController {
 		
 		model.addAttribute("MENU", us.genMune(list));
 		
-		return "menu";
+		return "left";
 	}
 	
 

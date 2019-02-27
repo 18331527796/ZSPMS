@@ -21,8 +21,14 @@
 	</resultMap>
 	
 	<select id="getDep" parameterType="int" resultType="TDep">
-		select * from tdep where id=#{dept}
+		select * from tdep2 where id=#{dept}
 	</select>
+	
+	<select id="queryById" parameterType="int" resultMap="usermap">
+		select * from tuser2 where id=#{id}
+	</select>
+	
+	
 	<!-- 按条件查询 -->
 	<select id="queryByPage" parameterType="QueryUser" resultMap="usermap">
 		select b.* from (select rownum rn,a.* from (
@@ -81,6 +87,10 @@
 		</foreach>
 	</delete>
 	
+	<delete id="deleteById" parameterType="int">
+		delete from tuser2 where id=#{id}
+	</delete>
+	
 	<!-- 按照id修改 -->
 	<update id="updateById" parameterType="TUser">
 		update tuser2 
@@ -122,17 +132,19 @@
 	</update>
 	
 	<!-- 新增用户 -->
-	<insert id="insertUser">
+	<insert id="insertUser" parameterType="TUser" >
 		<!-- 在之前查询序列并返回 -->
 		<selectKey keyProperty="id" order="BEFORE" resultType="int">
 			select T_USER2.Nextval from dual
 		</selectKey>
 		insert into tuser2(id,loginname,realname,sex,birthday,password,dep,email,creator,creatortime,pic,isenabled) 
-		values(#{id},#{loginname},#{realname},#{sex},sysdate,#{password},#{dept.id},#{email},#{creator},sysdate,#{pic},#{isenabled})
+		values(#{id},#{loginname},#{realname},#{sex},#{birthday},#{password},#{dept.id},#{email},#{creator},sysdate,#{pic},#{isenabled})
 	</insert>
 	
 	<select id="queryCount" parameterType="QueryUser" resultType="int">
 		select count(1) from tuser2
 		<include refid="where"/>
 	</select>
+	
+	
 </mapper>

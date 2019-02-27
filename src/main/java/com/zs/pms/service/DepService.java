@@ -6,5 +6,7 @@ import com.zs.pms.po.TDep;
 
 public interface DepService {
 
-	public List<TDep> queryByDid(int id);
+	public List<TDep> queryByDid(int pid);
+	
+	
 }

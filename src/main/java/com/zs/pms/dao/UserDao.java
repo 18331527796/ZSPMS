@@ -22,4 +22,8 @@ public interface UserDao {
 	
 	public int queryCount(QueryUser qu);
 	
+	public void deleteById(int id);
+	
+	public TUser queryById(int id);
+	
 }

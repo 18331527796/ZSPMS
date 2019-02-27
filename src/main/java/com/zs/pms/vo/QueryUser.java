@@ -4,6 +4,8 @@ import java.util.Date;
 
 public class QueryUser {
 
+	private int id;
+	
 	private String loginname;
 	
 	private String password;
@@ -19,6 +21,15 @@ public class QueryUser {
 	private int isenabled;
 	
 	
+
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public int getIsenabled() {
 		return isenabled;

@@ -7,6 +7,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.zs.pms.dao.UserDao;
+import com.zs.pms.exception.AppException;
 import com.zs.pms.po.TDep;
 import com.zs.pms.po.TPermission;
 import com.zs.pms.po.TUser;
@@ -41,7 +42,7 @@ public class TestUser {
 	}
 	
 	
-	public void testInsert() {
+	public void testInsert() throws AppException {
 		TUser user=new TUser();
 		TDep dep=new TDep();
 		dep.setId(2);

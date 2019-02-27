@@ -8,9 +8,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.zs.pms.dao.UserDao;
+import com.zs.pms.exception.AppException;
 import com.zs.pms.po.TPermission;
 import com.zs.pms.po.TUser;
 import com.zs.pms.service.UserService;
+import com.zs.pms.util.MD5;
 import com.zs.pms.util.NUM;
 import com.zs.pms.vo.QueryUser;
 
@@ -65,11 +67,18 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void insertUser(TUser user) {
-		
+	@Transactional(rollbackFor = Exception.class)
+	public int insertUser(TUser user) throws AppException {
+		if (user.getLoginname().equals("admin")) {
+			throw new AppException(10101, "登录名不能使用admin!");
+		}
+		MD5 md5=new MD5();
+		user.setPassword(md5.getMD5ofStr(user.getPassword()));
 		dao.insertUser(user);
-
+		return user.getId();
 	}
+
+
 
 	@Override
 	@Transactional(rollbackFor = Exception.class)
@@ -103,6 +112,18 @@ public class UserServiceImpl implements UserService {
 	public void hello() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public void deleteById(int id) {
+		dao.deleteById(id);
+		
+	}
+
+	@Override
+	public TUser queryById(int id) {
+		
+		return dao.queryById(id);
 	}
 
 }
